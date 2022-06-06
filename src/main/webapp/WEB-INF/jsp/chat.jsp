@@ -66,7 +66,10 @@ form {
 </style>
 
 <script>
-
+/**
+ * 削除を行うJavaScriptコード
+ * @param id 削除対象のID（HTMLから渡される）
+ */
 function deleteData(id) {
 	
 	alert(id);
@@ -106,25 +109,25 @@ function deleteData(id) {
 		if (data.isPresent()) {
 			ChatEntity entity = data.get();
 		%>
-
-		<form action="chat" method="post">
+		<%-- TODO: この部分を修正して、データを送信できるようにしよう --%>
+		<form action="chat">
 			<div class="row">
-				<input type="hidden" name="id" value="<%=entity.getId()%>">
+				<input type="hidden" name="id" value="">
 				<div class="col-lg-6 offset-lg-3">
 					<div class="card">
 						<h4><%=entity.getName()%></h4>
-						<input type="hidden" name="name" value="<%=entity.getName()%>">
+						<input type="hidden" name="name" value="">
 						<p>
-							<textarea name="message"><%=entity.getMessage()%></textarea>
+							<textarea name="message"></textarea>
 						</p>
 						<p class="footer">
-							投稿日<%=entity.getPosted()%></p>
+							投稿日</p>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-2 offset-lg-3">
-					<button type="button" onclick="deleteData(<%=entity.getId()%>)"
+					<button type="button" onclick="deleteData(<%-- ここにDELETEするためのIDをセット --%>)"
 						class="btn btn-danger">削除</button>
 				</div>
 				<div class="col-lg-2 offset-lg-3">
@@ -132,6 +135,7 @@ function deleteData(id) {
 				</div>
 			</div>
 		</form>
+		<%-- 修正点ここまで --%>
 		<%
 		} else {
 		%>

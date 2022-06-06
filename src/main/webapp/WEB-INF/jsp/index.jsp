@@ -72,27 +72,41 @@ footer form {
 		</div>
 	</nav>
 	<div class="container">
-		<%
-		@SuppressWarnings("unchecked")
-		List<ChatEntity> data = (List<ChatEntity>) request.getAttribute("data");
-		%>
+
 		<div class="row">
-			<%
-			for (ChatEntity row : data) {
-			%>
+			<%-- TODO:  うまくループして表示できるように変更しよう --%>
 			<div class="col-lg-6 offset-lg-3">
 				<div class="card">
-					<h4><%=row.getName()%></h4>
-					<p><%=row.getMessage()%></p>
+					<h4>名前</h4>
+					<p>メッセージ</p>
 					<p class="footer">
-					<%=row.getPosted()%>
-					<a href="chat?id=<%=row.getId() %>" class="link-primary">編集</a>
+					2022/05/06 14:30
+					<a href="chat?id=<%--ここにIDを入れて画面遷移する --%>" class="link-primary">編集</a>
 					</p>
 				</div>
 			</div>
-			<%
-			}
-			%>
+			
+			<div class="col-lg-6 offset-lg-3">
+				<div class="card">
+					<h4>名前</h4>
+					<p>メッセージ</p>
+					<p class="footer">
+					2022/05/06 14:30
+					<a href="chat?id=<%--ここにIDを入れて画面遷移する --%>" class="link-primary">編集</a>
+					</p>
+				</div>
+			</div>
+			
+			<div class="col-lg-6 offset-lg-3">
+				<div class="card">
+					<h4>名前</h4>
+					<p>メッセージ</p>
+					<p class="footer">
+					2022/05/06 14:30
+					<a href="chat?id=<%--ここにIDを入れて画面遷移する --%>" class="link-primary">編集</a>
+					</p>
+				</div>
+			</div>
 		</div>
 	</div>
 	<footer>

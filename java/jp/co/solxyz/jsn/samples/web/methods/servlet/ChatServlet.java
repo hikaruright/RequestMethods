@@ -36,10 +36,8 @@ public class ChatServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		int dataId = Integer.parseInt(req.getParameter("id"));
-
-		req.setAttribute("data", this.dataDao.get(dataId));
-
+		//TODO データを取得して表示する処理を実装しよう
+		
 		req.getRequestDispatcher(JSP_PATH).forward(req, resp);
 	}
 
@@ -52,7 +50,7 @@ public class ChatServlet extends HttpServlet {
 		String _name = (String) req.getParameter("name");
 		String _message = (String) req.getParameter("message");
 
-		// TODO: 必要に応じてバリデーションを設定しよう
+		// TODO 必要に応じてバリデーションを設定しよう
 
 		// POSTされたデータの取得
 		ChatEntity receiveData = ChatEntity.builder().id(Integer.parseInt(_id)).name(_name).message(_message).build();

@@ -38,10 +38,9 @@ public class ListServlet extends HttpServlet {
 
 		// 全件取得する
 		try {
-			req.setAttribute("data", this.dataDao.getAll());
-
-			// JSP表示
-			req.getRequestDispatcher(JSP_PATH).forward(req, resp);
+			
+			//TODO 画面に渡す処理を追加しよう
+			var allData = this.dataDao.getAll();
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -54,7 +53,7 @@ public class ListServlet extends HttpServlet {
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
+		
 		req.setCharacterEncoding("UTF-8");
 		
 		// POSTされたデータの取得

@@ -4,9 +4,6 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.time.LocalDateTime;
-import java.time.ZoneId;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -56,12 +53,8 @@ public class DataDao {
 	 * @throws SQLException DB情報の取得に失敗した際に発生するエラー
 	 */
 	private ChatEntity convertRStoEntity(ResultSet resultSet) throws SQLException {
-		return ChatEntity.builder().id(resultSet.getInt("id")).name(resultSet.getString("name"))
-				.message(resultSet.getString("message"))
-				.posted(
-						
-						LocalDateTime.ofInstant(resultSet.getTimestamp("posted").toInstant(), ZoneId.systemDefault())
-				).build();
+		//TODO ここを実装
+		return null;
 	}
 
 	/**
@@ -71,20 +64,8 @@ public class DataDao {
 	 */
 	public List<ChatEntity> getAll() throws SQLException {
 
-		String sql = "SELECT id, name, message, posted FROM chatlog";
-
-		try (var con = this.getConnection()) {
-			ResultSet resultSet = con.prepareStatement(sql).executeQuery();
-
-			List<ChatEntity> list = new ArrayList<>();
-
-			while (resultSet.next()) {
-				// リスト
-				list.add(convertRStoEntity(resultSet));
-			}
-
-			return list;
-		}
+		//TODO ここを実装
+		return null;
 
 	}
 
@@ -96,24 +77,8 @@ public class DataDao {
 	 */
 	public Optional<ChatEntity> get(int id) {
 
-		String sql = "SELECT id, name, message, posted FROM chatlog WHERE id = ?";
-
-		try (var con = this.getConnection()) {
-			var ps = con.prepareStatement(sql);
-			ps.setInt(1, id);
-
-			ResultSet resultSet = ps.executeQuery();
-
-			if (resultSet.next()) {
-				return Optional.of(this.convertRStoEntity(resultSet));
-			} else {
-				return Optional.empty();
-			}
-		} catch (SQLException e) {
-			e.printStackTrace();
-			return Optional.empty();
-		}
-
+		//TODO ここを実装
+		return null;
 	}
 
 	/**
@@ -123,19 +88,8 @@ public class DataDao {
 	 */
 	public void insert(ChatEntity entity) throws SQLException {
 
-		String sql = "INSERT INTO chatlog (id, name, message) VALUES (?, ?, ?)";
-
-		try (var con = this.getConnection()) {
-			var ps = con.prepareStatement(sql);
-
-			ps.setInt(1, entity.getId());
-			ps.setString(2, entity.getName());
-			ps.setString(3, entity.getMessage());
-
-			if (ps.executeUpdate() > 0) {
-				con.commit();
-			}
-		}
+		//TODO ここを実装
+		return;
 
 	}
 
@@ -146,19 +100,7 @@ public class DataDao {
 	 */
 	public void update(ChatEntity entity) throws SQLException {
 
-		String sql = "UPDATE chatlog SET name=?, message=? WHERE id=?";
-
-		try (var con = this.getConnection()) {
-			var ps = con.prepareStatement(sql);
-
-			ps.setString(1, entity.getName());
-			ps.setString(2, entity.getMessage());
-			ps.setInt(3, entity.getId());
-
-			if (ps.executeUpdate() > 0) {
-				con.commit();
-			}
-		}
+		return;
 	}
 
 	/**
@@ -168,15 +110,6 @@ public class DataDao {
 	 */
 	public void delete(int id) throws SQLException {
 
-		String sql = "DELETE FROM chatlog where id=?";
-
-		try (var con = this.getConnection()) {
-			var ps = con.prepareStatement(sql);
-			ps.setInt(1, id);
-
-			if (ps.executeUpdate() > 0) {
-				con.commit();
-			}
-		}
+		return;
 	}
 }
