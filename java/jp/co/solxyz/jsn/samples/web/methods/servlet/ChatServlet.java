@@ -36,8 +36,8 @@ public class ChatServlet extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
-		//TODO データを取得して表示する処理を実装しよう
-		
+		// TODO データを取得して表示する処理を実装しよう
+
 		req.getRequestDispatcher(JSP_PATH).forward(req, resp);
 	}
 
@@ -45,7 +45,7 @@ public class ChatServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		req.setCharacterEncoding("UTF-8");
-		
+
 		String _id = (String) req.getParameter("id");
 		String _name = (String) req.getParameter("name");
 		String _message = (String) req.getParameter("message");
@@ -53,7 +53,7 @@ public class ChatServlet extends HttpServlet {
 		// TODO 必要に応じてバリデーションを設定しよう
 
 		// POSTされたデータの取得
-		ChatEntity receiveData = ChatEntity.builder().id(Integer.parseInt(_id)).name(_name).message(_message).build();
+		ChatEntity receiveData = new ChatEntity(Integer.parseInt(_id), _name, _message, null);
 		try {
 			this.dataDao.update(receiveData);
 			resp.sendRedirect("./");

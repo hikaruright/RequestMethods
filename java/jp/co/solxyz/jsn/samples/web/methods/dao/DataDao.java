@@ -4,8 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
 
 import jp.co.solxyz.jsn.samples.web.methods.entity.ChatEntity;
 
@@ -37,6 +39,7 @@ public class DataDao {
 
 	/**
 	 * コネクション生成
+	 * 
 	 * @return コネクション
 	 * @throws SQLException
 	 */
@@ -53,8 +56,18 @@ public class DataDao {
 	 * @throws SQLException DB情報の取得に失敗した際に発生するエラー
 	 */
 	private ChatEntity convertRStoEntity(ResultSet resultSet) throws SQLException {
-		//TODO ここを実装
-		return null;
+		
+		return new ChatEntity(
+			// ID
+			resultSet.getInt("id"),
+			// 氏名
+			resultSet.getString("name"),
+			// メッセージ
+			resultSet.getString("message"),
+			// 投稿日時
+			LocalDateTime.ofInstant(resultSet.getTimestamp("posted").toInstant(), ZoneId.systemDefault())
+				);
+		
 	}
 
 	/**
@@ -64,8 +77,8 @@ public class DataDao {
 	 */
 	public List<ChatEntity> getAll() throws SQLException {
 
-		//TODO ここを実装
-		return null;
+		// TODO ここを実装
+		return new ArrayList<ChatEntity>();
 
 	}
 
@@ -75,9 +88,9 @@ public class DataDao {
 	 * @param id 取得するデータのID
 	 * @return 取得結果
 	 */
-	public Optional<ChatEntity> get(int id) {
+	public ChatEntity get(int id) {
 
-		//TODO ここを実装
+		// TODO ここを実装
 		return null;
 	}
 
@@ -88,7 +101,7 @@ public class DataDao {
 	 */
 	public void insert(ChatEntity entity) throws SQLException {
 
-		//TODO ここを実装
+		// TODO ここを実装
 		return;
 
 	}

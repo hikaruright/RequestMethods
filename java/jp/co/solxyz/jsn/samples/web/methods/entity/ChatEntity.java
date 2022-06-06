@@ -2,7 +2,7 @@ package jp.co.solxyz.jsn.samples.web.methods.entity;
 
 import java.time.LocalDateTime;
 
-import lombok.Builder;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 
 /**
@@ -10,11 +10,11 @@ import lombok.Data;
  *
  */
 @Data
-@Builder
+@AllArgsConstructor
 public class ChatEntity {
 	
 	/** 固有ID */
-	private int id;
+	private Integer id;
 	
 	/** 氏名 */
 	private String name;

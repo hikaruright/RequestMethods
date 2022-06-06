@@ -41,6 +41,8 @@ public class ListServlet extends HttpServlet {
 			
 			//TODO 画面に渡す処理を追加しよう
 			var allData = this.dataDao.getAll();
+			
+			req.getRequestDispatcher(JSP_PATH).forward(req, resp);
 
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -55,11 +57,13 @@ public class ListServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		
 		req.setCharacterEncoding("UTF-8");
-		
+
 		// POSTされたデータの取得
-		ChatEntity receiveData = ChatEntity.builder()
-				.name((String) req.getParameter("name"))
-				.message((String) req.getParameter("message")).build();
+		String _name = req.getParameter("name");
+		String _message = req.getParameter("message");
+		
+		// 登録データの生成
+		ChatEntity receiveData = new ChatEntity(null, _name, _message, null);
 
 		try {
 			this.dataDao.insert(receiveData);
