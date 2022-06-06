@@ -103,11 +103,9 @@ function deleteData(id) {
 	</nav>
 	<div class="container">
 		<%
-		@SuppressWarnings("unchecked")
-		Optional<ChatEntity> data = (Optional<ChatEntity>) request.getAttribute("data");
+		ChatEntity entity = (ChatEntity) request.getAttribute("data");
 
-		if (data.isPresent()) {
-			ChatEntity entity = data.get();
+		if (entity != null) {
 		%>
 		<%-- TODO: この部分を修正して、データを送信できるようにしよう --%>
 		<form action="chat">
@@ -120,14 +118,14 @@ function deleteData(id) {
 						<p>
 							<textarea name="message"></textarea>
 						</p>
-						<p class="footer">
-							投稿日</p>
+						<p class="footer">投稿日</p>
 					</div>
 				</div>
 			</div>
 			<div class="row">
 				<div class="col-lg-2 offset-lg-3">
-					<button type="button" onclick="deleteData(<%-- ここにDELETEするためのIDをセット --%>)"
+					<button type="button"
+						onclick="deleteData(<%-- ここにDELETEするためのIDをセット --%>)"
 						class="btn btn-danger">削除</button>
 				</div>
 				<div class="col-lg-2 offset-lg-3">
